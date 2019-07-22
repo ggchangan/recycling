@@ -1,0 +1,116 @@
+{
+    "success": true,
+    "errorMessage": null,
+    "data": {
+        "timezone": "America/New_York",
+        "prevTasks": [
+            {
+                "name": "Load Dimension",
+                "status": "fail"
+            },
+            {
+                "name": "Load Inventory",
+                "status": "success"
+            },
+            {
+                "name": "Load f_order_hourly",
+                "status": "waiting"
+            },
+            {
+                "name": "Load f_audience_cpx_daily",
+                "status": "success"
+            },
+            {
+                "name": "Load f_unique_campaign_hourly",
+                "status": "success"
+            },
+            {
+                "name": "Load f_market_delivered_hourly",
+                "status": "success"
+            },
+            {
+                "name": "Load f_rbp_advanced_daily",
+                "status": "success"
+            }
+        ],
+        "reports": [
+            {
+                "reportId": 1,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "success",
+                "createUser": "111"
+            },
+            {
+                "reportId": 2,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "running",
+                "createUser": "111"
+            },
+            {
+                "reportId": 3,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "waiting",
+                "createUser": "111"
+            },
+            {
+                "reportId": 4,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "success",
+                "createUser": "111"
+            },
+            {
+                "reportId": 5,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "success",
+                "createUser": "111"
+            },
+            {
+                "reportId": 6,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "success",
+                "createUser": "111"
+            },
+            {
+                "reportId": 7,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "success",
+                "createUser": "111"
+            },
+            {
+                "reportId": 8,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "success",
+                "createUser": "111"
+            },
+            {
+                "reportId": 9,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "success",
+                "createUser": "111"
+            },
+            {
+                "reportId": 10,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "success",
+                "createUser": "111"
+            },
+            {
+                "reportId": 11,
+                "reportName": "namene",
+                "networkId": 57230,
+                "status": "success",
+                "createUser": "111"
+            }
+        ]
+    }
+}

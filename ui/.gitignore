@@ -1,0 +1,8 @@
+node_modules
+.idea
+dist
+*.log
+bak
+lib
+coverage
+*.mp4

@@ -1,0 +1,36 @@
+{
+    "success": true,
+    "errorMessage": null,
+    "data": {
+        "timezone": "America/New_York",
+        "reports": [
+            {
+                "reportId": 1,
+                "networkId": "99999",
+                "userName": "jlu@turner.com",
+                "reportName": "delivery report",
+                "ftpFileFormat": "csv",
+                "status": "running",
+                "deliveredTime": "N/A"
+            },
+            {
+                "reportId": 2,
+                "networkId": "169843",
+                "userName": "jlu@nbcu.com",
+                "reportName": "test report",
+                "ftpFileFormat": "excel",
+                "status": "published",
+                "deliveredTime": "2019-07-10 09:30:00"
+            },
+            {
+                "reportId": 3,
+                "networkId": "384777",
+                "userName": "jlu@comcast.com",
+                "reportName": "linear traffic",
+                "ftpFileFormat": "csv, excel",
+                "status": "waiting",
+                "deliveredTime": "N/A"
+            }
+        ]
+    }
+}

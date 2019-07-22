@@ -1,0 +1,32 @@
+{
+    "success": true,
+    "errorMessage": null,
+    "data": {
+        "reports": [
+            {
+                "reportID": "1",
+                "networkID": "57230",
+                "createUser": "Demo User0",
+                "reportName": "Demo Report0",
+                "updatedAt": "2019/07/09 08:01:16 UTC",
+                "isSelected": true
+            },
+            {
+                "reportID": "2",
+                "networkID": "57231",
+                "createUser": "Demo User1",
+                "reportName": "Demo Report1",
+                "updatedAt": "2019/07/09 08:01:16 UTC",
+                "isSelected": true
+            },
+            {
+                "reportID": "3",
+                "networkID": "57232",
+                "createUser": "Demo User2",
+                "reportName": "Demo Report2",
+                "updatedAt": "2019/07/09 08:01:16 UTC",
+                "isSelected": true
+            }
+        ]
+    }
+}

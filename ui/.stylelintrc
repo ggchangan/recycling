@@ -1,0 +1,22 @@
+{
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-css-modules"
+    ],
+    "rules": {
+        "color-named": "never",
+        "font-family-name-quotes": "always-where-recommended",
+        "font-weight-notation": "named-where-possible",
+        "function-url-quotes": "never",
+        "max-line-length": 120,
+        "max-nesting-depth": 0,
+        "number-leading-zero": "never",
+        "selector-attribute-quotes": "always",
+        "selector-class-pattern": ["^[a-zA-Z]+([a-z0-9]?|[a-z0-9\\-]*[a-z0-9])$", {
+            "message": "Expect kebab-case in class names"
+        }],
+        "selector-max-id": 0,
+        "string-quotes": "single",
+        "indentation": 4
+    }
+}

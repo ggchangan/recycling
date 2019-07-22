@@ -1,0 +1,23 @@
+.search-panel{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.search-input{
+    margin-left: 10px
+}
+
+.search-btn{
+    margin-left: 20px
+}
+
+.delivery-chart{
+    margin-left: 50px;
+    margin-right: 100px
+}
+
+.chart-title {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}

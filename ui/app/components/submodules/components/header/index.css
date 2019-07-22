@@ -1,0 +1,22 @@
+.super-header {
+    height: 60px;
+    background-color: #3c778a;
+    padding: 0 20px;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+}
+
+.super-header img {
+    height: 30px;
+}
+
+.super-header h1 {
+    color: #fff;
+    font-size: 18px;
+    margin: 0 0 0 10px;
+    height: 26px;
+    line-height: 26px;
+    border-left: solid 1px #fff;
+    padding: 0 0 0 10px;
+}

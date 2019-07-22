@@ -1,0 +1,177 @@
+{
+    "account": {
+        "type": "local",
+        "data": {
+            "logoutPath": "",
+            "unsuPath": ""
+        }
+    },
+    "token": {
+        "type": "local",
+        "data": ""
+    },
+    "index": {
+        "type": "local",
+        "data": {
+            "messages": [],
+            "total": 0
+        }
+    },
+    "floating_inbox": {
+        "type": "local",
+        "data": {
+            "messages": [],
+            "unviewed_count": 0
+        }
+    },
+    "context": {
+        "type": "local",
+        "data": {
+            "is_admin": false,
+            "is_super_admin": true,
+            "is_bvi_admin": true,
+            "is_external_admin": false,
+            "is_read_only": false,
+            "can_disable_read_only": true,
+            "build_version": "",
+            "all_permissions": [
+                {
+                    "name": "ad",
+                    "parent_name": null
+                },
+                {
+                    "name": "net",
+                    "parent_name": null
+                },
+                {
+                    "name": "partner",
+                    "parent_name": null
+                }
+            ],
+            "user": {
+                "id": "30",
+                "login": "User1",
+                "network_id": "48804",
+                "permissions": [
+                    "ad",
+                    "net",
+                    "partner",
+                    "insights.dashboards.realtime",
+                    "insights.dashboards",
+                    "mrma.data_package",
+                    "mrma.full_access",
+                    "mrma.data_package",
+                    "rpma.advertising",
+                    "rpma.partner",
+                    "insights.canned_reports.performance_reporting",
+                    "insights.data_ops"
+                ],
+                "other_identities": [
+                    {
+                        "id": "2",
+                        "network_id": "11575",
+                        "network_name": "demo-network-2"
+                    },
+                    {
+                        "id": "3",
+                        "network_id": "168234",
+                        "network_name": "demo-network-3"
+                    },
+                    {
+                        "id": "",
+                        "network_id": "",
+                        "network_name": ""
+                    }
+                ],
+                "locale": null
+            },
+            "network": {
+                "id": "48804",
+                "name": "test network",
+                "network_functions": {
+                    "ADVISORY_SERVICES_DASHBOARDS_ABC": {
+                        "id": "1333",
+                        "parameter": ""
+                    },
+                    "BASIC_DISTRIBUTOR_REPORTING": {
+                        "id": "1142",
+                        "parameter": ""
+                    },
+                    "CROSS_DEVICE_DATAXU": {
+                        "id": "1338",
+                        "parameter": ""
+                    },
+                    "DATA_PLATFORM_ANALYTICS_BETA": {
+                        "id": "1306",
+                        "parameter": "3"
+                    },
+                    "ENABLE_HYLDA": {
+                        "id": "1219",
+                        "parameter": "digital_channel_limit=100"
+                    },
+                    "ENABLE_INBOUND_MRM_RULE_PROFILE": {
+                        "id": "1325",
+                        "parameter": ""
+                    },
+                    "ENABLE_INVOICING": {
+                        "id": "1283",
+                        "parameter": ""
+                    },
+                    "ENABLE_LINEAR_AD_INSERTION_EVENT": {
+                        "id": "1332",
+                        "parameter": ""
+                    },
+                    "ENABLE_ORDER_MANAGEMENT": {
+                        "id": "1115",
+                        "parameter": ""
+                    },
+                    "ENABLE_PROPOSAL_MANAGEMENT": {
+                        "id": "1248",
+                        "parameter": ""
+                    },
+                    "ENABLE_UPFRONT": {
+                        "id": "1231",
+                        "parameter": ""
+                    },
+                    "ENABLE_ZONE": {
+                        "id": "1317",
+                        "parameter": ""
+                    },
+                    "MARKET_INSIGHTS": {
+                        "id": "121900",
+                        "parameter": ""
+                    },
+                    "MRMA": {
+                        "id": "121903",
+                        "parameter": ""
+                    },
+                    "MRMA_ROLE_PERMISSIONS": {
+                        "id": "121904",
+                        "parameter": ""
+                    },
+                    "RPMA_ADVERTISING": {
+                        "id": "121902",
+                        "parameter": ""
+                    },
+                    "RPMA_PARTNER": {
+                        "id": "121901",
+                        "parameter": ""
+                    },
+                    "RPM_MODULE_PARTNER": {
+                        "id": "1116",
+                        "parameter": ""
+                    }
+                },
+                "timezone": "America/New_York",
+                "locale": "en-us"
+            },
+            "ui_config": {
+                "inbox_message": {
+                    "enable": true,
+                    "max_notify_interval": 1800,
+                    "notify_interval_increment": 5
+                }
+            }
+        }
+    }
+}

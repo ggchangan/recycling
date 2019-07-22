@@ -1,0 +1,21 @@
+{
+    "data": {
+        "deliveryDetails": {
+            "reportID": 1,
+            "finishTime": [
+                {"x": "2019-07-01", "deliveryTime": "08:00", "y": 8.0},
+                {"x": "2019-07-02", "deliveryTime": "08:20", "y": 8.33333},
+                {"x": "2019-07-03", "deliveryTime": "08:15", "y": 8.25},
+                {"x": "2019-07-04", "deliveryTime": "08:12", "y": 8.2},
+                {"x": "2019-07-05", "deliveryTime": "08:36", "y": 9.5}
+            ],
+            "email": [
+                {"index": 1, "date": "2019-07-01", "receiver": "yinchen@freewheel.tv", "sentTime": "08:00"},
+                {"index": 2, "date": "2019-07-01", "receiver": "jlu@freewheel.tv", "sentTime": "08:20"},
+                {"index": 3, "date": "2019-07-03", "receiver": "yinchen@freewheel.tv", "sentTime": "08:15"},
+                {"index": 4, "date": "2019-07-04", "receiver": "jlu@freewheel.tv", "sentTime": "08:12"},
+                {"index": 5, "date": "2019-07-05", "receiver": "yinchen@freewheel.tv", "sentTime": "08:36"}
+            ]
+        }
+    }
+}

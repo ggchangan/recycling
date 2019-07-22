@@ -1,0 +1,82 @@
+.side-bar {
+    width: 360px;
+    background-color: black;
+    height: 100%;
+    position: relative;
+    overflow: auto;
+}
+
+.side-bar::-webkit-scrollbar { width: 0 !important }
+
+.fold {
+
+}
+
+.icon-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.web-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0 30px 0;
+    padding-bottom: 50px;
+    border-bottom: solid 1px #979797;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.web-title.fold .logo {
+    width: 40px;
+    height: 40px;
+}
+
+.web-title h1 {
+    font-size: 18px;
+    color: #fff;
+}
+
+.web-title p {
+    color: #999;
+    padding: 5px 0;
+}
+
+.side-bar ul li {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    box-sizing: border-box;
+    border-right: solid 4px #000;
+    cursor: pointer;
+}
+
+.side-bar ul li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.side-bar ul li a p {
+    padding: 5px 0;
+    margin: 0;
+}
+
+.side-bar ul li.current, .side-bar ul li:hover {
+    background-color: #333;
+    border-right: solid 4px #1890FF;
+}
+
+.side-bar ul li.current a, .side-bar ul li:hover a {
+    color: #fff;
+    text-decoration: none;
+}

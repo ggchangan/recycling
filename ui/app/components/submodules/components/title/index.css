@@ -1,0 +1,17 @@
+.title {
+    line-height: 30px;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.title span {
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    background-color: #1890FF;
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    top: 3px;
+}
