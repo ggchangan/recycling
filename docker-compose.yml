@@ -1,0 +1,9 @@
+version: '3.1'
+services:
+
+  recycling:
+    build: .
+    container_name: recycling
+    ports:
+      - "18080:8080"
+      - "18787:8787"
