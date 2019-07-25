@@ -4,6 +4,7 @@ import {Input, Button, Table, Icon, message} from 'antd';
 import Highlight from 'react-highlight';
 import Title from '../title';
 import './index.css';
+import logo from './Recyclabe2.png';
 
 export default createComponent({
     displayName: 'DetailComponent',
@@ -187,17 +188,55 @@ export default createComponent({
     },
     render() {
         const {model} = this.props;
-        let detail = model.get('reportDetail');
         let sqlShow = model.get('sqlShow');
         let padding = sqlShow ? '326px' : '32px';
         return (
             <div style={{position: 'relative', paddingBottom: padding}}>
-                <Title title="Search Reports" />
-                {this.renderSearchPanel()}
-                <Title title="Report List" />
-                {this.renderSearchResult()}
-                {detail.isEmpty() ? null : <Title title="Report Details" />}
-                {detail.isEmpty() ? null : this.renderReportDetails()}
+                <Title title="可回收垃圾" />
+                <div
+                    styleName="flex-container"
+                    style={{
+                        backgroundColor: 'rgb(41, 82, 136)',
+                        width: '50%',
+                        margin: 'auto',
+                        color: '#FFFFFF'
+                    }}
+                >
+                    <div
+                        style={{
+                            width: '40%',
+                            height: 'auto',
+                            marginTop: '5%',
+                            marginBottom: '5%',
+                            textAlign: 'center',
+                            fontSize: '8px'
+                        }}
+                    >
+                        <div>
+                            <img src={logo} style={{width: '40%'}}></img>
+                        </div>
+                        <div>可回收物</div>
+                        <div>RECYCLABLE WASTE</div>
+                    </div>
+                    <div style={{textAlign: 'left'}}>
+                        <div style={{fontSize: '12px'}}>可回收垃圾</div>
+                        <span
+                            style={{
+                                display: 'inline-block',
+                                width: '60px',
+                                height: '2px',
+                                backgroundColor: '#FFFFFF',
+                                position: 'relative',
+                                top: '-6px'
+                            }}
+                        ></span>
+                        <div style={{fontSize: '10px', paddingRight: '40px'}}>
+                            {' '}
+                            指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物
+                        </div>
+                    </div>
+                </div>
+                <div></div>
             </div>
         );
     },
