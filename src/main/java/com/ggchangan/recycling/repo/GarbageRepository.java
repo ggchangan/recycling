@@ -2,8 +2,9 @@ package com.ggchangan.recycling.repo;
 
 import com.ggchangan.recycling.entity.Garbage;
 import com.ggchangan.recycling.entity.GarbageKind;
-import com.ggchangan.recycling.entity.User;
+import com.ggchangan.recycling.mapper.GarbageMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,6 +15,9 @@ import java.util.Map;
 @Repository
 @Slf4j
 public class GarbageRepository {
+    @Autowired
+    public GarbageMapper garbageMapper;
+
     private static ArrayList<Garbage> recyclable = new ArrayList<Garbage>() {
         {
             add(new Garbage((long)1, "name1", GarbageKind.RECYCLABLE));
@@ -53,7 +57,7 @@ public class GarbageRepository {
     };
 
     public List<Garbage> getByKind(GarbageKind kind) {
-        return garbage.get(kind);
+        return garbageMapper.getByKind(kind.toString());
     }
 
     public List<Garbage> getByKey(String key) {
