@@ -4,6 +4,8 @@ import {Button} from 'antd';
 import Title1 from '../title1';
 import './index.css';
 import logo from './Recyclable.png';
+import Kind from '../kind';
+import Description from '../description';
 
 export default createComponent({
     displayName: 'DetailComponent',
@@ -57,45 +59,13 @@ export default createComponent({
         const {model} = this.props;
         const kind = model.get('kind');
         const eKind = model.get('eKind');
-        return (
-            <div
-                style={{
-                    width: '40%',
-                    height: 'auto',
-                    marginTop: '5%',
-                    marginBottom: '5%',
-                    textAlign: 'center',
-                    fontSize: '8px'
-                }}
-            >
-                <div>
-                    <img src={logo} style={{width: '40%'}}></img>
-                </div>
-                <div>{kind}</div>
-                <div>{eKind}</div>
-            </div>
-        );
+        return <Kind kind={kind} eKind={eKind} logo={logo} />;
     },
     renderKindDescription() {
         const {model} = this.props;
         const kind = model.get('kind');
         const description = model.get('description');
-        return (
-            <div style={{textAlign: 'left'}}>
-                <div style={{fontSize: '12px'}}>{kind}</div>
-                <span
-                    style={{
-                        display: 'inline-block',
-                        width: '60px',
-                        height: '2px',
-                        backgroundColor: '#FFFFFF',
-                        position: 'relative',
-                        top: '-6px'
-                    }}
-                ></span>
-                <div style={{fontSize: '10px', paddingRight: '40px'}}> {description}</div>
-            </div>
-        );
+        return <Description kind={kind} description={description} />;
     },
     renderHeader() {
         return (
@@ -116,6 +86,8 @@ export default createComponent({
     render() {
         return (
             <div style={{width: '50%', margin: 'auto'}}>
+                {this.renderKind()}
+                {this.renderKindDescription()}
                 {this.renderTitle()}
                 {this.renderHeader()}
                 {this.renderGarbages()}
