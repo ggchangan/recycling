@@ -1,7 +1,7 @@
 import {createComponent, PropTypes} from 'spark-modula';
 import DetailModel from './index_model';
 import {Button} from 'antd';
-import Title from '../title';
+import Title1 from '../title1';
 import './index.css';
 import logo from './Recyclable.png';
 
@@ -15,8 +15,8 @@ export default createComponent({
         const {model} = this.props;
         const kind = model.get('kind');
         return (
-            <div>
-                <Title title={kind} />
+            <div style={{marginBottom: '5px'}}>
+                <Title1 title={kind} />
             </div>
         );
     },
@@ -105,9 +105,9 @@ export default createComponent({
     render() {
         return (
             <div style={{width: '50%', margin: 'auto'}}>
-                <div>{this.renderTitle()}</div>
-                <div>{this.renderHeader()}</div>
-                <div>{this.renderGarbages()}</div>
+                {this.renderTitle()}
+                {this.renderHeader()}
+                {this.renderGarbages()}
             </div>
         );
     }
