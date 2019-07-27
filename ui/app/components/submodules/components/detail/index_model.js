@@ -11,39 +11,13 @@ const ActionTypes = createConstants('DETAIL', {
     SELECT_REPORT: null
 });
 
-const SearchStruct = ImmutablePropTypes.mapContains({
-    networkID: PropTypes.string,
-    createUser: PropTypes.string,
-    reportName: PropTypes.string
-});
-
-const FoundReportStruct = ImmutablePropTypes.mapContains({
-    reportID: PropTypes.string,
-    networkID: PropTypes.string,
-    createUser: PropTypes.string,
-    reportName: PropTypes.string,
-    updatedAt: PropTypes.string,
-    isSelected: PropTypes.bool
-});
-
-const ReportDetailStruct = ImmutablePropTypes.mapContains({
-    report: FoundReportStruct,
-    dimension: ImmutablePropTypes.listOf(PropTypes.string),
-    metric: ImmutablePropTypes.listOf(PropTypes.string),
-    filter: PropTypes.string,
-    dateRange: PropTypes.string,
-    sql: PropTypes.string
-});
-
 export default createModel({
     displayName: 'DetailModel',
     propTypes: {
-        reportID: PropTypes.number,
-        createUser: PropTypes.string,
-        searchParams: SearchStruct,
-        foundReports: ImmutablePropTypes.listOf(FoundReportStruct),
-        reportDetail: ReportDetailStruct,
-        sqlShow: PropTypes.bool
+        kind: PropTypes.string,
+        eKind: PropTypes.string,
+        description: PropTypes.string,
+        garbages: ImmutablePropTypes.listOf(PropTypes.string)
     },
     contextTypes: {
         fetchResource: PropTypes.func.isRequired,
@@ -51,11 +25,11 @@ export default createModel({
         getUrlQuery: PropTypes.func.isRequired
     },
     defaults: {
-        reportID: -1,
-        createUser: '',
-        searchParams: () => new Map({networkID: '', createUser: '', reportName: ''}),
-        foundReports: () => new List([]),
-        reportDetail: () => new Map({}),
+        kind: '可回收垃圾',
+        eKind: 'RECYCLABLE WASTE',
+        description: '指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物',
+        garbages: () => new List(['iPad', 'iWatch', 'MP3', 'MP4', '书本', '交通卡']),
+        // garbages: () => new List(['iPad', 'iWatch']),
         sqlShow: true
     },
     modelDidMount() {
