@@ -53,11 +53,51 @@ export default createComponent({
             </div>
         );
     },
-    renderHeader() {
+    renderKind() {
         const {model} = this.props;
         const kind = model.get('kind');
         const eKind = model.get('eKind');
+        return (
+            <div
+                style={{
+                    width: '40%',
+                    height: 'auto',
+                    marginTop: '5%',
+                    marginBottom: '5%',
+                    textAlign: 'center',
+                    fontSize: '8px'
+                }}
+            >
+                <div>
+                    <img src={logo} style={{width: '40%'}}></img>
+                </div>
+                <div>{kind}</div>
+                <div>{eKind}</div>
+            </div>
+        );
+    },
+    renderKindDescription() {
+        const {model} = this.props;
+        const kind = model.get('kind');
         const description = model.get('description');
+        return (
+            <div style={{textAlign: 'left'}}>
+                <div style={{fontSize: '12px'}}>{kind}</div>
+                <span
+                    style={{
+                        display: 'inline-block',
+                        width: '60px',
+                        height: '2px',
+                        backgroundColor: '#FFFFFF',
+                        position: 'relative',
+                        top: '-6px'
+                    }}
+                ></span>
+                <div style={{fontSize: '10px', paddingRight: '40px'}}> {description}</div>
+            </div>
+        );
+    },
+    renderHeader() {
         return (
             <div style={{position: 'relative'}}>
                 <div
@@ -67,38 +107,9 @@ export default createComponent({
                         color: '#FFFFFF'
                     }}
                 >
-                    <div
-                        style={{
-                            width: '40%',
-                            height: 'auto',
-                            marginTop: '5%',
-                            marginBottom: '5%',
-                            textAlign: 'center',
-                            fontSize: '8px'
-                        }}
-                    >
-                        <div>
-                            <img src={logo} style={{width: '40%'}}></img>
-                        </div>
-                        <div>{kind}</div>
-                        <div>{eKind}</div>
-                    </div>
-                    <div style={{textAlign: 'left'}}>
-                        <div style={{fontSize: '12px'}}>{kind}</div>
-                        <span
-                            style={{
-                                display: 'inline-block',
-                                width: '60px',
-                                height: '2px',
-                                backgroundColor: '#FFFFFF',
-                                position: 'relative',
-                                top: '-6px'
-                            }}
-                        ></span>
-                        <div style={{fontSize: '10px', paddingRight: '40px'}}> {description}</div>
-                    </div>
+                    {this.renderKind()}
+                    {this.renderKindDescription()}
                 </div>
-                <div></div>
             </div>
         );
     },
