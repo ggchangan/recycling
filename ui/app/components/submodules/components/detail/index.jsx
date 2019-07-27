@@ -55,19 +55,11 @@ export default createComponent({
             </div>
         );
     },
-    renderKind() {
+    renderHeader() {
         const {model} = this.props;
         const kind = model.get('kind');
         const eKind = model.get('eKind');
-        return <Kind kind={kind} eKind={eKind} logo={logo} />;
-    },
-    renderKindDescription() {
-        const {model} = this.props;
-        const kind = model.get('kind');
         const description = model.get('description');
-        return <Description kind={kind} description={description} />;
-    },
-    renderHeader() {
         return (
             <div style={{position: 'relative'}}>
                 <div
@@ -77,8 +69,12 @@ export default createComponent({
                         color: '#FFFFFF'
                     }}
                 >
-                    {this.renderKind()}
-                    {this.renderKindDescription()}
+                    <div style={{flex: 1}}>
+                        <Kind kind={kind} eKind={eKind} logo={logo} />
+                    </div>
+                    <div style={{flex: 4, margin: '5%', marginLeft: 0}}>
+                        <Description kind={kind} description={description} />
+                    </div>
                 </div>
             </div>
         );
@@ -86,8 +82,6 @@ export default createComponent({
     render() {
         return (
             <div style={{width: '50%', margin: 'auto'}}>
-                {this.renderKind()}
-                {this.renderKindDescription()}
                 {this.renderTitle()}
                 {this.renderHeader()}
                 {this.renderGarbages()}

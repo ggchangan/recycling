@@ -1,12 +1,11 @@
 .kind {
     text-align: center;
-    font-size: large;
     color: white;
-    background-color: red;
+    /* background-color: red; */
 }
 
 .kind img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 25%;
+    max-height: 25%;
     margin: 5%;
 }

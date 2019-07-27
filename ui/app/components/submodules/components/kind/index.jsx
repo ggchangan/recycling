@@ -14,8 +14,8 @@ export default createComponent({
                 <div>
                     <img src={this.props.logo}></img>
                 </div>
-                <div>{this.props.kind}</div>
-                <div>{this.props.eKind}</div>
+                <div style={{fontSize: '0.8em'}}>{this.props.kind}</div>
+                <div style={{marginBottom: '5%', fontSize: '0.4em'}}>{this.props.eKind}</div>
             </div>
         );
     }
