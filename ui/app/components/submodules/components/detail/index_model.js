@@ -2,6 +2,7 @@ import {createModel, PropTypes, ImmutablePropTypes, createConstants} from 'spark
 import {List, Map, fromJS} from 'immutable';
 
 const ActionTypes = createConstants('DETAIL', {
+    INIT_DATA: null,
     SEARCH: null,
     CHANGE_NETWORK_ID: null,
     CHANGE_CREATE_USER: null,
@@ -14,6 +15,7 @@ const ActionTypes = createConstants('DETAIL', {
 export default createModel({
     displayName: 'DetailModel',
     propTypes: {
+        id: PropTypes.string,
         kind: PropTypes.string,
         eKind: PropTypes.string,
         description: PropTypes.string,
@@ -25,6 +27,7 @@ export default createModel({
         getUrlQuery: PropTypes.func.isRequired
     },
     defaults: {
+        id: 'RECYCLABLE',
         kind: '可回收垃圾',
         eKind: 'RECYCLABLE WASTE',
         description: '指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物',
@@ -48,12 +51,54 @@ export default createModel({
     sendInit() {
         this.bubbleEvent('hideLoading');
         const getUrlQuery = this.getContext('getUrlQuery');
-        let qReportID = getUrlQuery('reportID');
-        if (qReportID !== undefined && qReportID !== '' && qReportID !== this.reportID) {
-            let createUser = getUrlQuery('userName');
-            const fromUrl = true;
-            this.sendReportDetail(qReportID, createUser, fromUrl);
-        }
+        const kind = getUrlQuery('kind');
+        const kinds = [
+            {
+                id: 'RECYCLABLE',
+                kind: '可回收垃圾',
+                eKind: 'RECYCLABLE WASTE',
+                description: '指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物'
+            },
+            {
+                id: 'HARMFUL',
+                kind: '有害垃圾',
+                eKind: 'HARMFUL WASTE',
+                description: '指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物'
+            },
+            {
+                id: 'WET',
+                kind: '湿垃圾',
+                eKind: 'WET WASTE',
+                description: '指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物'
+            },
+            {
+                id: 'DRY',
+                kind: '干垃圾',
+                eKind: 'DRY WASTE',
+                description: '指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物'
+            }
+        ];
+        const cKind = kinds.filter(term => term.id === kind.toUpperCase())[0];
+        this.dispatch({
+            type: ActionTypes.INIT_DATA,
+            payload: cKind
+        });
+    },
+    recvInit() {
+        return {
+            type: ActionTypes.INIT_DATA,
+            update(model, action) {
+                const {id, kind, eKind, description} = action.payload;
+                return [
+                    model.setMulti({
+                        id,
+                        kind,
+                        eKind,
+                        description
+                    })
+                ];
+            }
+        };
     },
     sendSearch() {
         const fetchResource = this.getContext('fetchResource');
