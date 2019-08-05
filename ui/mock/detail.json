@@ -2,20 +2,20 @@
     "success": true,
     "errorMessage": null,
     "data": {
-        "date_range": "2019/05/26 - 2019/06/02 Aggregation by Day",
-        "filter": "Network ID is_equal_to 57230, Delivery Method is_equal_to Dynamic",
-        "dimension": ["Delivery Method", "Network ID", "Advertiser Name", "hello world"],
-        "metric": ["Net Delivered Impressions"],
-        "network_timezone": "America/New_York",
-        "sql": "SELECT \n\td_network.id  AS \"d_network.id\",\n\td_advertiser.name  AS \"d_advertiser.name\",\n\tIF(aggr.delivery_method = 'Static', 'Scheduled', aggr.delivery_method)  AS \"aggr.delivery_method\",\n\tCOALESCE(SUM(aggr.ad_views ), 0) AS \"aggr.ad_views\"\nFROM (\n    SELECT\n        reseller_id,\n        ad_id,\n        delivery_method,\n      bit_flag,\n       SUM(fact_ad_views) AS ad_views, \n      network_id\n    FROM (\n      SELECT\n          reseller_id,\n          ad_id,\n          delivery_method,\n        bit_flag,\n         IF(transaction_type IN ('CRO', 'R') AND traffic_type = 0 AND BITWISE_AND(bit_flag, 2048) \u003c\u003e 2048, ad_views, 0) AS fact_ad_views, \n        network_id\n      FROM\n          db.aggregate.f_order_hourly\n      WHERE\n        ( network_id  = 57230)\n        AND ((( event_date ) \u003e= (CAST(CONCAT(DATE_FORMAT(TIMESTAMP '2019-05-26', '%Y-%m-%d %T '), 'America/New_York') AS TIMESTAMP)) AND ( event_date ) \u003c (CAST(CONCAT(DATE_FORMAT(TIMESTAMP '2019-06-03', '%Y-%m-%d %T '), 'America/New_York') AS TIMESTAMP))))\n        AND ( transaction_type  IN ('CRO', 'R'))\n        AND ( REGEXP_LIKE( IF(delivery_method = 'Static', 'Scheduled', delivery_method) , '(?i)^Dynamic$'))\n    ) fact\n    GROUP BY\n        reseller_id,\n        ad_id,\n        delivery_method,\n      bit_flag,\n      network_id\n  )  AS aggr\nLEFT JOIN db.default.d_ad_tree_node_rehashed  AS d_ad_tree_node ON (IF(BITWISE_AND(bit_flag, 32) = 32, -1, aggr.ad_id)) = d_ad_tree_node.id and if((IF(BITWISE_AND(bit_flag, 32) = 32, -1, aggr.ad_id))=-1,rand(100)+1 ,1)= d_ad_tree_node.id_rehashed \nINNER JOIN db.default.d_network  AS d_network ON aggr.network_id = d_network.id \nLEFT JOIN db.default.d_advertiser  AS d_advertiser ON d_ad_tree_node.advertiser_id = d_advertiser.id \nWHERE (aggr.network_id  = 57230) AND (( REGEXP_LIKE(IF(aggr.delivery_method = 'Static', 'Scheduled', aggr.delivery_method) , '(?i)^Dynamic$'))) AND (d_network.id  IN (57230,57230))\nGROUP BY 1,2,3",
-        "share_info": "",
-        "subscription_info": "",
-        "foundReport": {
-            "reportID": "1",
-            "networkID": "57230",
-            "createUser": "Demo User0",
-            "reportName": "Demo Report0",
-            "updatedAt": "2019/07/09 08:01:16 UTC"
-        }
+        "garbages": [
+            "报纸",
+            "杂志",
+            "图书",
+            "各种包装纸",
+            "办公用纸",
+            "纸盒",
+            "易拉罐",
+            "金属罐头盒",
+            "装饰物",
+            "废弃衣服",
+            "毛巾",
+            "书包",
+            "布鞋"
+        ]
     }
 }

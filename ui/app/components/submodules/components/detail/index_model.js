@@ -1,9 +1,9 @@
 import {createModel, PropTypes, ImmutablePropTypes, createConstants} from 'spark-modula';
-import {List, Map, fromJS} from 'immutable';
+import {List, fromJS} from 'immutable';
 
 const ActionTypes = createConstants('DETAIL', {
     INIT_DATA: null,
-    SEARCH: null,
+    DETAIL: null,
     CHANGE_NETWORK_ID: null,
     CHANGE_CREATE_USER: null,
     CHANGE_REPORT_NAME: null,
@@ -31,9 +31,7 @@ export default createModel({
         kind: '可回收垃圾',
         eKind: 'RECYCLABLE WASTE',
         description: '指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物',
-        garbages: () => new List(['iPad', 'iWatch', 'MP3', 'MP4', '书本', '交通卡']),
-        // garbages: () => new List(['iPad', 'iWatch']),
-        sqlShow: true
+        garbages: () => new List(['iPad', 'iWatch', 'MP3', 'MP4', '书本', '交通卡'])
     },
     modelDidMount() {
         this.sendInit();
@@ -89,212 +87,42 @@ export default createModel({
             type: ActionTypes.INIT_DATA,
             update(model, action) {
                 const {id, kind, eKind, description} = action.payload;
-                return [
-                    model.setMulti({
-                        id,
-                        kind,
-                        eKind,
-                        description
-                    })
-                ];
-            }
-        };
-    },
-    sendSearch() {
-        const fetchResource = this.getContext('fetchResource');
-        const handleGlobalException = this.getContext('handleGlobalException');
-        const searchParams = this.get('searchParams');
-        const networkID = searchParams.get('networkID');
-        const createUser = searchParams.get('createUser');
-        const reportName = searchParams.get('reportName');
-        this.bubbleEvent('showLoading');
-        return fetchResource('detailSearch', {
-            networkID,
-            createUser,
-            reportName
-        })
-            .then(response => {
-                let {reports} = response.data;
-                this.dispatch({
-                    type: ActionTypes.SEARCH,
-                    payload: {reports}
-                });
-                // this.bubbleEvent('hideLoading');
-            })
-            .catch(handleGlobalException);
-    },
-    recvSearch() {
-        return {
-            type: ActionTypes.SEARCH,
-            update(model, action) {
-                const {reports} = action.payload;
-                if (reports === undefined || reports.length === 0) {
-                    const newModel = model.setMulti({
-                        reportID: '',
-                        createUser: '',
-                        foundReports: new List([]),
-                        reportDetail: new Map({}),
-                        sqlShow: false
-                    });
-                    return [newModel];
-                }
-                const reportID = reports[0].reportID;
-                const createUser = reports[0].createUser;
                 const newModel = model.setMulti({
-                    reportID: reportID,
-                    createUser: createUser,
-                    foundReports: fromJS(reports)
+                    id,
+                    kind,
+                    eKind,
+                    description
                 });
-                return [newModel, () => model.sendReportDetail(reportID, createUser)];
+                return [newModel, model.sendDetail];
             }
         };
     },
-    sendReportDetail(reportID, createUser, fromUrl) {
+    sendDetail() {
         const fetchResource = this.getContext('fetchResource');
         const handleGlobalException = this.getContext('handleGlobalException');
+        const kind = this.get('id');
         // this.bubbleEvent('showLoading');
-        return fetchResource('detailReport', {
-            reportID,
-            createUser
+        return fetchResource('kindGarbage', {
+            kind
         })
             .then(response => {
-                let {dimension, metric, filter, date_range: dateRange, sql, foundReport} = response.data;
+                let {garbages} = response.data;
                 this.dispatch({
-                    type: ActionTypes.REPORT_DETAIL,
-                    payload: {dimension, metric, filter, dateRange, sql, foundReport, fromUrl}
+                    type: ActionTypes.DETAIL,
+                    payload: {garbages}
                 });
-                this.bubbleEvent('hideLoading');
             })
             .catch(handleGlobalException);
     },
-    recvReportDetail() {
-        const getUrlQuery = this.getContext('getUrlQuery');
-        const qReportID = getUrlQuery('reportID');
-        const createUser = getUrlQuery('userName');
+    recvDetail() {
         return {
-            type: ActionTypes.REPORT_DETAIL,
+            type: ActionTypes.DETAIL,
             update(model, action) {
-                const {dimension, metric, filter, dateRange, sql, foundReport, fromUrl} = action.payload;
-                const detail = model.get('reportDetail');
-                let newDetail = detail.merge({
-                    dimension: new List(dimension),
-                    metric: new List(metric),
-                    filter: filter,
-                    dateRange: dateRange,
-                    sql: sql
-                });
-                let newModel = model.set('reportDetail', newDetail);
-                if (fromUrl) {
-                    // come from url to refresh table
-                    newModel = newModel.setMulti({
-                        reportID: qReportID,
-                        createUser: createUser,
-                        foundReports: new List([foundReport])
-                    });
-                }
-
-                return [newModel];
-            }
-        };
-    },
-    sendChangeNetworkID(e, fieldName) {
-        const value = e.target.value;
-        this.dispatch({
-            type: ActionTypes.CHANGE_NETWORK_ID,
-            payload: {
-                value,
-                fieldName
-            }
-        });
-    },
-    recvChangeNetWorkID() {
-        return {
-            type: ActionTypes.CHANGE_NETWORK_ID,
-            update(model, action) {
-                const {value, fieldName} = action.payload;
-                let search = model.get('searchParams');
-                let newSearch = search.set(fieldName, value);
-                let newModel = model.set('searchParams', newSearch);
-                return [newModel];
-            }
-        };
-    },
-    sendChangeCreateUser(e, fieldName) {
-        const value = e.target.value;
-        this.dispatch({
-            type: ActionTypes.CHANGE_CREATE_USER,
-            payload: {
-                value,
-                fieldName
-            }
-        });
-    },
-    recvChangeCreateUser() {
-        return {
-            type: ActionTypes.CHANGE_CREATE_USER,
-            update(model, action) {
-                const {value, fieldName} = action.payload;
-                let search = model.get('searchParams');
-                let newSearch = search.set(fieldName, value);
-                let newModel = model.set('searchParams', newSearch);
-                return [newModel];
-            }
-        };
-    },
-    sendChangeReportName(e, fieldName) {
-        const value = e.target.value;
-        this.dispatch({
-            type: ActionTypes.CHANGE_REPORT_NAME,
-            payload: {
-                value,
-                fieldName
-            }
-        });
-    },
-    recvChangeReportName() {
-        return {
-            type: ActionTypes.CHANGE_REPORT_NAME,
-            update(model, action) {
-                const {value, fieldName} = action.payload;
-                let search = model.get('searchParams');
-                let newSearch = search.set(fieldName, value);
-                let newModel = model.set('searchParams', newSearch);
-                return [newModel];
-            }
-        };
-    },
-    sendSqlShow() {
-        this.dispatch({
-            type: ActionTypes.SQL_SHOW,
-            payload: {}
-        });
-    },
-    recvSqlShow() {
-        return {
-            type: ActionTypes.SQL_SHOW,
-            update(model) {
-                let sqlShow = !model.get('sqlShow');
-                let newModel = model.set('sqlShow', sqlShow);
-                return [newModel];
-            }
-        };
-    },
-    sendSelectRow(reportID, createUser) {
-        this.dispatch({
-            type: ActionTypes.SELECT_REPORT,
-            payload: {reportID, createUser}
-        });
-    },
-    recvSelectRow() {
-        return {
-            type: ActionTypes.SELECT_REPORT,
-            update(model, action) {
-                const {reportID, createUser} = action.payload;
+                const {garbages} = action.payload;
                 const newModel = model.setMulti({
-                    reportID: reportID,
-                    createUser: createUser
+                    garbages: fromJS(garbages)
                 });
-                return [newModel, () => model.sendReportDetail(reportID, createUser, false)];
+                return [newModel];
             }
         };
     }

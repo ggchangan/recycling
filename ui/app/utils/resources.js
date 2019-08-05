@@ -25,10 +25,10 @@ const extraResourcesAPI = {
         method: 'GET',
         url: '/doraemon/api/impact?date=%{date}'
     },
-    detailSearch: {
+    kindGarbage: {
         type: 'json',
         method: 'GET',
-        url: '/doraemon/api/detail/search?networkID=%{networkID}&userName=%{createUser}&reportName=%{reportName}'
+        url: '/doraemon/api/detail?kind=%{kind}'
     },
     detailReport: {
         type: 'json',
